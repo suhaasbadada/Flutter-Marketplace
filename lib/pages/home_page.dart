@@ -24,9 +24,9 @@ class _HomePageState extends State<HomePage> {
         .loadString("assets/files/catalog.json"); // -> future return
     var decodedData = jsonDecode(catalogJson);
     var products = decodedData["products"];
-    for (var det in products) {
-      print(det);
-    }
+    CatalogModel.items =
+        List.from(products).map<Item>((item) => Item.fromMap(item)).toList();
+    setState(() {});
   }
 
   @override
@@ -37,14 +37,14 @@ class _HomePageState extends State<HomePage> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: ListView.builder(
+        child: (CatalogModel.items!=null && CatalogModel.items.isNotEmpty)?ListView.builder(
           itemCount: CatalogModel.items.length,
           itemBuilder: (context, index) {
             return ItemWidget(
               item: CatalogModel.items[index],
             );
           },
-        ),
+        ):const Center(child:CircularProgressIndicator()),
       ),
       drawer: const MyDrawer(),
     );
