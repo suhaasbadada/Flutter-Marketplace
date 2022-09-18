@@ -1,3 +1,11 @@
+# Unwanted folders
+linux/
+web/
+windows/
+macos/
+test/
+.vscode/
+
 # Miscellaneous
 *.class
 *.log
@@ -42,8 +50,3 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
-
-# Unwanted folders
-linux/
-web/
-windows/
