@@ -1,7 +1,3 @@
-// ignore_for_file: prefer_initializing_formals
-import 'package:flutter/services.dart';
-import 'dart:convert';
-
 class CatalogModel {
   static List<Item> items = [
     // Item(

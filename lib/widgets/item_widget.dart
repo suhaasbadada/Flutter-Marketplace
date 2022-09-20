@@ -1,6 +1,3 @@
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_tutorial_1/models/catalog.dart';
 import 'package:flutter_tutorial_1/widgets/themes.dart';
@@ -22,13 +19,16 @@ class ItemWidget extends StatelessWidget {
             borderRadius: BorderRadius.circular(15.0),
           ),
           child: ListTile(
-            onTap: () {
-              print("${item.name} pressed.");
-            },
-            leading: SizedBox(
-              height: 100,
-              width: 100,
-              child: Image.network(item.imgURL),
+            // onTap: () {
+            //   print("${item.name} pressed.");
+            // },
+            leading: Hero(
+              tag: Key(item.Id.toString()),
+              child: SizedBox(
+                height: 100,
+                width: 75,
+                child: Image.network(item.imgURL),
+              ),
             ),
             title: Text(item.name,
                 style: const TextStyle(fontWeight: FontWeight.bold)),
