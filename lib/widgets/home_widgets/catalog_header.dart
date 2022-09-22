@@ -1,5 +1,5 @@
+// ignore_for_file: deprecated_member_use
 import 'package:flutter/material.dart';
-import 'package:flutter_tutorial_1/widgets/themes.dart'; 
 
 class CatalogHeader extends StatelessWidget {
   const CatalogHeader({super.key});
@@ -13,12 +13,12 @@ class CatalogHeader extends StatelessWidget {
             textScaleFactor: 3,
             style: TextStyle(
               fontWeight: FontWeight.bold,
-              color: MyTheme.darkBluishColor,
+              color: Theme.of(context).accentColor,
             )),
         Text("Trending Produts",
             textScaleFactor: 1.3,
             style: TextStyle(
-              color: MyTheme.darkBluishColor,
+              color: Theme.of(context).accentColor,
             )),
       ],
     );

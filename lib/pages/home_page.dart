@@ -1,9 +1,12 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_tutorial_1/utils/routes.dart';
+import 'package:flutter_tutorial_1/widgets/home_widgets/catalog_header.dart';
 import 'package:flutter_tutorial_1/widgets/home_widgets/catalog_list.dart';
 import 'package:flutter_tutorial_1/models/catalog.dart';
 import 'dart:convert';
-import 'package:flutter_tutorial_1/widgets/themes.dart';
+// ignore_for_file: deprecated_member_use
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -32,32 +35,31 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: SafeArea(
-      child: Container(
-        padding: const EdgeInsets.all(32),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text("Catalog App",
-                // textScaleFactor: 1.5,
-                style: TextStyle(
-                  color: MyTheme.darkBluishColor,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 32,
-                )),
-            Text("Trending Products",
-                style: TextStyle(
-                  color: MyTheme.darkBluishColor,
-                  fontSize: 18,
-                )),
-            if (CatalogModel.items != null && CatalogModel.items.isNotEmpty)
-              const Expanded(child: CatalogList())
-            else
-              const Expanded(child: Center(child: CircularProgressIndicator()))
-          ],
+        backgroundColor: Theme.of(context).canvasColor,
+        floatingActionButton: FloatingActionButton(
+          onPressed: () => Navigator.pushNamed(context, MyRoutes.cartRoute),
+          backgroundColor: Theme.of(context).buttonColor,
+          child: const Icon(
+            CupertinoIcons.cart,
+            color: Colors.white,
+          ),
         ),
-      ),
-    ));
+        body: SafeArea(
+          child: Container(
+            padding: const EdgeInsets.all(32),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const CatalogHeader(),
+                if (CatalogModel.items != null && CatalogModel.items.isNotEmpty)
+                  const Expanded(child: CatalogList())
+                else
+                  const Expanded(
+                      child: Center(child: CircularProgressIndicator()))
+              ],
+            ),
+          ),
+        ));
   }
 }

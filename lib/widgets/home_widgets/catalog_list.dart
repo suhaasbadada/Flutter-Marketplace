@@ -12,7 +12,7 @@ class CatalogList extends StatelessWidget {
       child: ListView.builder(
         itemCount: CatalogModel.items.length,
         itemBuilder: (context, index) {
-          final catalog= CatalogModel.items[index];
+          final catalog = CatalogModel.items[index];
           return InkWell(
               onLongPress: () => Navigator.push(
                   context,

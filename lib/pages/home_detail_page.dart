@@ -1,7 +1,7 @@
+// ignore_for_file: deprecated_member_use
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tutorial_1/models/catalog.dart';
-import 'package:flutter_tutorial_1/widgets/home_widgets/catalog_list.dart';
-import 'package:flutter_tutorial_1/widgets/themes.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class HomeDetailPage extends StatelessWidget {
@@ -13,39 +13,94 @@ class HomeDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(),
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+        ),
         bottomNavigationBar: Container(
-          color: Colors.white,
+          color: Theme.of(context).canvasColor,
           child: ButtonBar(
             alignment: MainAxisAlignment.spaceBetween,
             buttonPadding: EdgeInsets.zero,
             children: [
-              "\$${catalog.price}".text.bold.xl4.red800.make(),
+              Text(
+                "\$${catalog.price}",
+                textScaleFactor: 2.2,
+                style: const TextStyle(
+                    fontWeight: FontWeight.bold, color: Colors.red),
+              ),
               ElevatedButton(
                 onPressed: () {},
                 style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all(
-                      MyTheme.darkBluishColor,
+                      Theme.of(context).buttonColor,
                     ),
                     shape: MaterialStateProperty.all(
                       const StadiumBorder(),
                     )),
-                child: "Buy".text.make(),
-              ).wh(100, 50)
+                child: const Icon(
+                  CupertinoIcons.cart_badge_plus,
+                  color: Colors.white,
+                ),
+              ).wh(120, 50)
             ],
           ).p32(),
         ),
-        backgroundColor: MyTheme.creamColor,
+        backgroundColor: Theme.of(context).canvasColor,
         body: SafeArea(
           child: Padding(
             padding: const EdgeInsets.all(16.0),
-            child: Center(
-              child: Container(
-                  alignment: Alignment.center,
-                  height: 300,
-                  width: 300,
-                  child: Hero(
-                      tag: catalog.Id, child: Image.network(catalog.imgURL))),
+            child: Column(
+              children: [
+                Container(
+                    alignment: Alignment.center,
+                    height: 300,
+                    width: 300,
+                    child: Hero(
+                        tag: catalog.Id,
+                        child: Image.network(
+                          catalog.imgURL,
+                          width: 250,
+                          height: 250,
+                        ))),
+                Container(
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).accentColor,
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding:
+                            const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 0.0),
+                        child: Text(
+                          catalog.name,
+                          textScaleFactor: 2,
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Theme.of(context).cardColor),
+                        ),
+                      ),
+                      Text(
+                        catalog.desc,
+                        textScaleFactor: 1.2,
+                        style: TextStyle(
+                            fontWeight: FontWeight.normal,
+                            color: Theme.of(context).cardColor),
+                      ),
+                      Center(
+                        child: Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Text(
+                              "Gubergren lorem accusam lorem aliquyam takimata. Invidunt eos diam duo sadipscing. Invidunt nonumy dolor et ut stet diam. Takimata magna.",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.normal,
+                                  color: Theme.of(context).cardColor)),
+                        ),
+                      )
+                    ],
+                  ),
+                )
+              ],
             ),
           ),
         ));
